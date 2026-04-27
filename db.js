@@ -2,13 +2,13 @@
 
 const mysql = require('mysql2');
 
-// 创建连接池
+// 创建连接池（使用环境变量，支持云端部署）
 const pool = mysql.createPool({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'WenWen2005',        // 你的密码是空的，所以留空
-    database: 'lvyu',
+    host: process.env.MYSQLHOST || 'localhost',
+    port: process.env.MYSQLPORT || 3306,
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'lvyu',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
